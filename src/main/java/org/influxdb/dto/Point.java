@@ -8,6 +8,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
@@ -21,11 +26,23 @@ import com.google.common.escape.Escapers;
  * @author stefan.majer [at] gmail.com
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "point")
 public class Point {
+	
+	@XmlElement(name = "measurement")
 	private String measurement;
+	
+	@XmlElement(name = "tags")
 	private Map<String, String> tags;
+	
+	@XmlElement(name = "time")
 	private Long time;
+	
+	@XmlElement(name = "precision")
 	private TimeUnit precision = TimeUnit.NANOSECONDS;
+	
+	@XmlElement(name = "fields")
 	private Map<String, Object> fields;
 
 	private static final Escaper FIELD_ESCAPER = Escapers.builder().addEscape('"', "\\\"").build();

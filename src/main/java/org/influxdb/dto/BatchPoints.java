@@ -3,6 +3,12 @@ package org.influxdb.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 import org.influxdb.InfluxDB.ConsistencyLevel;
 
 import com.google.common.base.Preconditions;
@@ -19,11 +25,23 @@ import com.google.common.collect.Ordering;
  * @author stefan
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "batchpoint")
 public class BatchPoints {
+	
+	@XmlElement(name = "database")
 	private String database;
+	
+	@XmlElement(name = "retentionPolicy")
 	private String retentionPolicy;
+	
+	@XmlElement(name = "tags")
 	private Map<String, String> tags;
+	
+	@XmlElement(name = "points")
 	private List<Point> points;
+	
+	@XmlElement(name = "consistency")
 	private ConsistencyLevel consistency;
 
 	BatchPoints() {
